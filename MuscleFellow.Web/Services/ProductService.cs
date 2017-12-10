@@ -17,6 +17,11 @@ namespace MuscleFellow.Web.Services
     {
         private readonly IRepository<Product> _productRepo;
 
+        public ProductService(IRepository<Product> productRepo)
+        {
+            _productRepo = productRepo;
+        }
+
         public async Task<List<Product>> GetPopularProductsAsync(int count)
         {
             var results = await _productRepo.Table

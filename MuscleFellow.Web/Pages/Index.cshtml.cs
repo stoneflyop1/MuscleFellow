@@ -9,14 +9,14 @@ using MuscleFellow.Web.Services;
 
 namespace MuscleFellow.Web.Pages
 {
-    public class HomePageViewModel : PageModel
+    public class IndexModel : PageModel
     {
         private readonly IBrandService _brandService;
         private readonly IProductService _productService;
 
         private readonly int _maxProductCount = 20;
 
-        public HomePageViewModel(IBrandService brandService, IProductService productService)
+        public IndexModel(IBrandService brandService, IProductService productService)
         {
             _brandService = brandService;
             _productService = productService;

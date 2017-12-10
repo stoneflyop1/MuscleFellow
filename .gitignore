@@ -318,3 +318,6 @@ ASALocalRun/
 
 
 .DS_Store
+
+#sqlite db
+*.db

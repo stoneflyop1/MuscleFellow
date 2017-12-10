@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using MuscleFellow.Models;
 
 namespace MuscleFellow.Data
 {
@@ -15,7 +16,7 @@ namespace MuscleFellow.Data
     {
         #region Fields
 
-        private readonly DbContext _context;
+        private readonly IDbContext _context;
         //private IDbSet<T> _entities;
 
         #endregion
@@ -26,7 +27,7 @@ namespace MuscleFellow.Data
         /// Ctor
         /// </summary>
         /// <param name="context">Object context</param>
-        public EfRepository(DbContext context)
+        public EfRepository(IDbContext context)
         {
             _context = context;
         }
@@ -224,7 +225,7 @@ namespace MuscleFellow.Data
         {
             get
             {
-                return _context.Set<T>();
+                return _context.Table<T>();
             }
         }
 
@@ -233,7 +234,7 @@ namespace MuscleFellow.Data
         /// </summary>
         public virtual IQueryable<T> TableNoTracking
         {
-            get { return _context.Set<T>().AsNoTracking(); }
+            get { return _context.TableNoTracking<T>(); }
         }
 
         ///// <summary>
