@@ -10,7 +10,7 @@ namespace MuscleFellow.Models.Domain
 
         public Guid ProductID { get; set; }
 
-        public string RelaticeUrl { get; set; }
+        public string RelativeUrl { get; set; }
 
         public string Comments { get; set; }
     }

@@ -11,6 +11,8 @@ namespace MuscleFellow.Web.Services
     public interface IProductService
     {
         Task<List<Product>> GetPopularProductsAsync(int count);
+
+        Task<IEnumerable<Product>> GetProductsAsync(string keyword, int page, int pageSize);
     }
 
     public class ProductService : IProductService
@@ -29,6 +31,19 @@ namespace MuscleFellow.Web.Services
                     .ToListAsync();
 
             return results;
+        }
+
+        public async Task<IEnumerable<Product>> GetProductsAsync(string keyword, int page, int pageSize)
+        {
+            var results = await _productRepo.Table.Where
+                    (p => (String.IsNullOrEmpty(keyword) ||
+                     p.ProductName.Contains(keyword) || p.Description.Contains(keyword)))
+                    .Select(p => new { Product = p, })
+                    .Skip(pageSize * page)
+                    .Take(pageSize)
+                    .ToListAsync();
+
+            return results.Select(p => p.Product);
         }
     }
 }
