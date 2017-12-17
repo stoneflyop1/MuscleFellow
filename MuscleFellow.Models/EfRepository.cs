@@ -60,38 +60,38 @@ namespace MuscleFellow.Data
         /// Insert entity
         /// </summary>
         /// <param name="entity">Entity</param>
-        public virtual void Insert(T entity)
+        public virtual int Insert(T entity)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
 
             _context.Add(entity);
-            _context.SaveChanges();
+            return SaveChanges();
         }
 
-        public virtual Task InsertAsync(T entity)
+        public virtual Task<int> InsertAsync(T entity)
         {
             return InsertAsync(entity, CancellationToken.None);
         }
 
-        public Task InsertAsync(T entity, CancellationToken cancellationToken)
+        public Task<int> InsertAsync(T entity, CancellationToken cancellationToken)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
 
             _context.Add(entity);
 
-            return _context.SaveChangesAsync(cancellationToken);
+            return SaveChangesAsync(cancellationToken);
         }
         /// <summary>
         /// Insert entities
         /// </summary>
         /// <param name="entities">Entities</param>
-        public virtual void Insert(IEnumerable<T> entities)
+        public virtual int Insert(IEnumerable<T> entities)
         {
             if (entities == null) throw new ArgumentNullException(nameof(entities));
 
             AddEntites(entities);
 
-            _context.SaveChanges();
+            return SaveChanges();
 
         }
 
@@ -100,61 +100,61 @@ namespace MuscleFellow.Data
             _context.AddRange(entities);
         }
 
-        public virtual Task InsertAsync(IEnumerable<T> entities)
+        public virtual Task<int> InsertAsync(IEnumerable<T> entities)
         {
             return InsertAsync(entities, CancellationToken.None);
         }
 
-        public virtual Task InsertAsync(IEnumerable<T> entities, CancellationToken cancellationToken)
+        public virtual Task<int> InsertAsync(IEnumerable<T> entities, CancellationToken cancellationToken)
         {
             if (entities == null) throw new ArgumentNullException(nameof(entities));
 
             AddEntites(entities);
 
-            return _context.SaveChangesAsync(cancellationToken);
+            return SaveChangesAsync(cancellationToken);
         }
         /// <summary>
         /// Update entity
         /// </summary>
         /// <param name="entity">Entity</param>
-        public virtual void Update(T entity)
+        public virtual int Update(T entity)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
-            Update();
+            return Update();
         }
 
-        public virtual Task UpdateAsync(T entity)
+        public virtual Task<int> UpdateAsync(T entity)
         {
             return UpdateAsync(entity, CancellationToken.None);
         }
 
-        public virtual Task UpdateAsync(T entity, CancellationToken cancellationToken)
+        public virtual Task<int> UpdateAsync(T entity, CancellationToken cancellationToken)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
             return UpdateAsync(cancellationToken);
         }
 
-        private void Update()
+        private int Update()
         {
-            _context.SaveChanges();
+            return SaveChanges();
         }
 
-        private Task UpdateAsync(CancellationToken cancellationToken)
+        private Task<int> UpdateAsync(CancellationToken cancellationToken)
         {
-            return _context.SaveChangesAsync(cancellationToken);
+            return SaveChangesAsync(cancellationToken);
         }
 
-        public void Update(IEnumerable<T> entities)
+        public int Update(IEnumerable<T> entities)
         {
-            Update();
+            return Update();
         }
 
-        public Task UpdateAsync(IEnumerable<T> entities)
+        public Task<int> UpdateAsync(IEnumerable<T> entities)
         {
             return UpdateAsync(CancellationToken.None);
         }
 
-        public Task UpdateAsync(IEnumerable<T> entities, CancellationToken cancellationToken)
+        public Task<int> UpdateAsync(IEnumerable<T> entities, CancellationToken cancellationToken)
         {
             return UpdateAsync(cancellationToken);
         }
@@ -162,26 +162,26 @@ namespace MuscleFellow.Data
         /// Delete entity
         /// </summary>
         /// <param name="entity">Entity</param>
-        public virtual void Delete(T entity)
+        public virtual int Delete(T entity)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
 
             _context.Remove(entity);
 
-            _context.SaveChanges();
+            return SaveChanges();
         }
 
-        public virtual Task DeleteAsync(T entity)
+        public virtual Task<int> DeleteAsync(T entity)
         {
             return DeleteAsync(entity, CancellationToken.None);
         }
 
-        public virtual Task DeleteAsync(T entity, CancellationToken cancellationToken)
+        public virtual Task<int> DeleteAsync(T entity, CancellationToken cancellationToken)
         {
             if (entity == null) throw new ArgumentNullException(nameof(entity));
 
             _context.Remove(entity);
-            return _context.SaveChangesAsync(cancellationToken);
+            return SaveChangesAsync(cancellationToken);
         }
 
         private void RemoveEntites(IEnumerable<T> entities)
@@ -192,26 +192,26 @@ namespace MuscleFellow.Data
         /// Delete entities
         /// </summary>
         /// <param name="entities">Entities</param>
-        public virtual void Delete(IEnumerable<T> entities)
+        public virtual int Delete(IEnumerable<T> entities)
         {
             if (entities == null) throw new ArgumentNullException(nameof(entities));
 
             RemoveEntites(entities);
-            _context.SaveChanges();
+            return SaveChanges();
         }
 
-        public virtual Task DeleteAsync(IEnumerable<T> entities)
+        public virtual Task<int> DeleteAsync(IEnumerable<T> entities)
         {
             return DeleteAsync(entities, CancellationToken.None);
         }
 
-        public virtual Task DeleteAsync(IEnumerable<T> entities, CancellationToken cancellationToken)
+        public virtual Task<int> DeleteAsync(IEnumerable<T> entities, CancellationToken cancellationToken)
         {
             if (entities == null) throw new ArgumentNullException(nameof(entities));
 
             RemoveEntites(entities);
 
-            return _context.SaveChangesAsync(cancellationToken);
+            return SaveChangesAsync(cancellationToken);
         }
 
         #endregion
@@ -326,6 +326,21 @@ namespace MuscleFellow.Data
         public Task<bool> AllAsync(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken)
         {
             return Table.AllAsync(predicate, cancellationToken);
+        }
+
+        public int SaveChanges()
+        {
+            return _context.SaveChanges();
+        }
+
+        public Task<int> SaveChangesAsync()
+        {
+            return _context.SaveChangesAsync();
+        }
+
+        public Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+        {
+            return _context.SaveChangesAsync(cancellationToken);
         }
     }
 }

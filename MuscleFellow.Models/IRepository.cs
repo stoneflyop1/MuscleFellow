@@ -23,53 +23,53 @@ namespace MuscleFellow.Data
         /// Insert entity
         /// </summary>
         /// <param name="entity">Entity</param>
-        void Insert(T entity);
+        int Insert(T entity);
 
-        Task InsertAsync(T entity);
+        Task<int> InsertAsync(T entity);
 
-        Task InsertAsync(T entity, CancellationToken cancellationToken);
+        Task<int> InsertAsync(T entity, CancellationToken cancellationToken);
         /// <summary>
         /// Insert entities
         /// </summary>
         /// <param name="entities">Entities</param>
-        void Insert(IEnumerable<T> entities);
+        int Insert(IEnumerable<T> entities);
 
-        Task InsertAsync(IEnumerable<T> entities);
+        Task<int> InsertAsync(IEnumerable<T> entities);
 
-        Task InsertAsync(IEnumerable<T> entities, CancellationToken cancellationToken);
+        Task<int> InsertAsync(IEnumerable<T> entities, CancellationToken cancellationToken);
         /// <summary>
         /// Update entity
         /// </summary>
         /// <param name="entity">Entity</param>
-        void Update(T entity);
+        int Update(T entity);
 
-        Task UpdateAsync(T entity);
+        Task<int> UpdateAsync(T entity);
 
-        Task UpdateAsync(T entity, CancellationToken cancellationToken);
+        Task<int> UpdateAsync(T entity, CancellationToken cancellationToken);
 
-        void Update(IEnumerable<T> entities);
+        int Update(IEnumerable<T> entities);
 
-        Task UpdateAsync(IEnumerable<T> entities);
+        Task<int> UpdateAsync(IEnumerable<T> entities);
 
-        Task UpdateAsync(IEnumerable<T> entities, CancellationToken cancellationToken);
+        Task<int> UpdateAsync(IEnumerable<T> entities, CancellationToken cancellationToken);
         /// <summary>
         /// Delete entity
         /// </summary>
         /// <param name="entity">Entity</param>
-        void Delete(T entity);
+        int Delete(T entity);
 
-        Task DeleteAsync(T entity);
+        Task<int> DeleteAsync(T entity);
 
-        Task DeleteAsync(T entity, CancellationToken cancellationToken);
+        Task<int> DeleteAsync(T entity, CancellationToken cancellationToken);
         /// <summary>
         /// Delete entities
         /// </summary>
         /// <param name="entities">Entities</param>
-        void Delete(IEnumerable<T> entities);
+        int Delete(IEnumerable<T> entities);
 
-        Task DeleteAsync(IEnumerable<T> entities);
+        Task<int> DeleteAsync(IEnumerable<T> entities);
 
-        Task DeleteAsync(IEnumerable<T> entities, CancellationToken cancellationToken);
+        Task<int> DeleteAsync(IEnumerable<T> entities, CancellationToken cancellationToken);
 
         /// <summary>
         /// Gets a table
@@ -80,6 +80,12 @@ namespace MuscleFellow.Data
         /// Gets a table with "no tracking" enabled (EF feature) Use it only when you load record(s) only for read-only operations
         /// </summary>
         IQueryable<T> TableNoTracking { get; }
+
+        int SaveChanges();
+
+        Task<int> SaveChangesAsync();
+
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 
         Task<T> FirstOrDefaultAsync();
 

@@ -15,10 +15,4 @@
   <ItemGroup>
     <ProjectReference Include="..\MuscleFellow.Models\MuscleFellow.Models.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Remove="Models\HomePageViewModel.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services\" />
-  </ItemGroup>
 </Project>

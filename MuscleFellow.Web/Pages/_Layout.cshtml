@@ -3,17 +3,19 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MuscleFellow.Web</title>
+    <title>@ViewData["Title"] - 肌肉伙伴</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/lib/jquery-ui/themes/smoothness/jquery-ui.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/css/bootstrap.min.css"
               asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/lib/jquery-ui/themes/smoothness/jquery-ui.min.css" />
     </environment>
 </head>
 <body>
@@ -26,14 +28,14 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-page="/Index" class="navbar-brand">MuscleFellow.Web</a>
+                <a asp-page="/Index" class="navbar-brand">肌肉伙伴</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a asp-page="/Index">Home</a></li>
-                    <li><a asp-page="/About">About</a></li>
-                    <li><a asp-page="/Contact">Contact</a></li>
+                    <li><a asp-page="/About">关于</a></li>
                 </ul>
+                @await Html.PartialAsync("_LoginPartial")
+                @await Html.PartialAsync("_Notifications")
             </div>
         </div>
     </nav>
@@ -41,12 +43,13 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; 2017 - MuscleFellow.Web</p>
+            <p>&copy; 2017 - 肌肉伙伴</p>
         </footer>
     </div>
 
     <environment include="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/jquery-ui/jquery-ui.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
     </environment>
