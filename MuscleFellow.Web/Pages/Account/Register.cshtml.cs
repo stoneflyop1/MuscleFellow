@@ -10,6 +10,7 @@ using MuscleFellow.Models.Domain;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Logging;
 using MuscleFellow.Web.Services;
+using MuscleFellow.Web.Models;
 
 namespace MuscleFellow.Web.Pages.Account
 {
@@ -28,24 +29,8 @@ namespace MuscleFellow.Web.Pages.Account
             _cartService = cartService;
             _logger = loggerFactory.CreateLogger<RegisterModel>();
         }
-
         [BindProperty]
-        [Required]
-        [EmailAddress]
-        [Display(Name = "Email")]
-        public string Email { get; set; }
-
-        [BindProperty]
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
-        public string Password { get; set; }
-
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
+        public RegisterViewModel RegisterUser { get; set; }
 
         #region Helpers
 
@@ -87,8 +72,8 @@ namespace MuscleFellow.Web.Pages.Account
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = Email, Email = Email };
-                var result = await _userManager.CreateAsync(user, Password);
+                var user = new ApplicationUser { UserName = RegisterUser.Email, Email = RegisterUser.Email };
+                var result = await _userManager.CreateAsync(user, RegisterUser.Password);
                 if (result.Succeeded)
                 {
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=532713
@@ -101,7 +86,7 @@ namespace MuscleFellow.Web.Pages.Account
 
                     // Update Shopping cart in anonymous status.
                     string sessionID = HttpContext.Session.Id;
-                    int count = await _cartService.UpdateAnonymousCartItem(sessionID, Email);
+                    int count = await _cartService.UpdateAnonymousCartItem(sessionID, RegisterUser.Email);
                     _logger.LogInformation(3, "User created a new account with password.");
                     return RedirectToLocal(returnUrl);
                 }

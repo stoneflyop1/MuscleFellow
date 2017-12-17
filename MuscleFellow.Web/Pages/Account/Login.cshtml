@@ -1,5 +1,5 @@
 ﻿@page
-@model MuscleFellow.Web.Pages.Account.LoginModel
+@model LoginModel
 @{
     ViewData["Title"] = "Log in";
 }
@@ -13,25 +13,25 @@
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="Email" class="col-md-2 control-label"></label>
+                    <label asp-for="LoginUser.Email" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
-                        <input asp-for="Email" class="form-control" />
-                        <span asp-validation-for="Email" class="text-danger"></span>
+                        <input asp-for="LoginUser.Email" class="form-control" />
+                        <span asp-validation-for="LoginUser.Email" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label asp-for="Password" class="col-md-2 control-label"></label>
+                    <label asp-for="LoginUser.Password" class="col-md-2 control-label"></label>
                     <div class="col-md-10">
-                        <input asp-for="Password" class="form-control" />
-                        <span asp-validation-for="Password" class="text-danger"></span>
+                        <input asp-for="LoginUser.Password" class="form-control" />
+                        <span asp-validation-for="LoginUser.Password" class="text-danger"></span>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <div class="checkbox">
-                            <label asp-for="RememberMe">
-                                <input asp-for="RememberMe" />
-                                @Html.DisplayNameFor(m => m.RememberMe)
+                            <label asp-for="LoginUser.RememberMe">
+                                <input asp-for="LoginUser.RememberMe" />
+                                @Html.DisplayNameFor(m => m.LoginUser.RememberMe)
                             </label>
                         </div>
                     </div>

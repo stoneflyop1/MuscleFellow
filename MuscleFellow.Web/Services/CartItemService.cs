@@ -105,12 +105,15 @@ namespace MuscleFellow.Web.Services
             if (string.IsNullOrWhiteSpace(userID) || string.IsNullOrWhiteSpace(sessionID))
                 return 0;
             List<CartItem> items = _cartRepo.Table.Where(c => c.SessionID == sessionID).ToList();
-            foreach (CartItem item in items)
+            if (items.Count > 0)
             {
-                item.UserID = userID;
-                _cartRepo.Update(item);
+                foreach (CartItem item in items)
+                {
+                    item.UserID = userID;
+                }
+                return await _cartRepo.UpdateAsync(items);
             }
-            return await _cartRepo.SaveChangesAsync();
+            return 0;
         }
         public async Task<List<CartItem>> GetCartItemsAsync(string sessionID, string userID, int pageSize, int pageCount)
         {

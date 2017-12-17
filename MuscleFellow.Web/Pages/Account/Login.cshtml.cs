@@ -9,24 +9,14 @@ using Microsoft.AspNetCore.Identity;
 using MuscleFellow.Models.Domain;
 using MuscleFellow.Web.Services;
 using Microsoft.Extensions.Logging;
+using MuscleFellow.Web.Models;
 
 namespace MuscleFellow.Web.Pages.Account
 {
     public class LoginModel : PageModel
     {
         [BindProperty]
-        [Required]
-        [EmailAddress]
-        public string Email { get; set; }
-
-        [BindProperty]
-        [Required]
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-
-        [BindProperty]
-        [Display(Name = "Remember me?")]
-        public bool RememberMe { get; set; }
+        public LoginViewModel LoginUser { get; set; }
 
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -83,12 +73,13 @@ namespace MuscleFellow.Web.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Email, Password, RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(
+                    LoginUser.Email, LoginUser.Password, LoginUser.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
                     // Update Shopping cart in anonymous status.
                     string sessionID = HttpContext.Session.Id;
-                    int count = await _cartService.UpdateAnonymousCartItem(sessionID, Email);
+                    int count = await _cartService.UpdateAnonymousCartItem(sessionID, LoginUser.Email);
                     _logger.LogInformation(1, "User logged in.");
                     return RedirectToLocal(returnUrl);
                 }
