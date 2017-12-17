@@ -1,15 +1,10 @@
-﻿@using Microsoft.AspNetCore.Identity
-@using MuscleFellow.Models.Domain
-
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
-
-@if (SignInManager.IsSignedIn(User))
+﻿
+@if (User.Identity.IsAuthenticated)
 {
-    <form asp-controller="Account" asp-action="LogOff" method="post" id="logoutForm" class="navbar-right">
+    <form asp-page="Account/LogOff" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a asp-page="Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
+                <a asp-page="Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
             </li>
             <li>
                 <a asp-page="ShoppingCart/Index">购物车</a>
@@ -23,8 +18,8 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a href="Account/Register">注册</a></li>
-        <li><a href="Account/Login">登录</a></li>
-        <li><a asp-controller="ShoppingCart" asp-action="Index">购物车</a></li>
+        <li><a asp-page="Account/Register">注册</a></li>
+        <li><a asp-page="Account/Login">登录</a></li>
+        <li><a asp-page="ShoppingCart/Index">购物车</a></li>
     </ul>
 }
