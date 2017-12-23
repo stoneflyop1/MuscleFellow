@@ -65,6 +65,7 @@ namespace MuscleFellow.Web
 
             app.UseStaticFiles();
             app.UseSession();
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

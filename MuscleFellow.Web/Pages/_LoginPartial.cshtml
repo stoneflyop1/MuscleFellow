@@ -4,10 +4,10 @@
     <form asp-page="Account/LogOff" method="post" id="logoutForm" class="navbar-right">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a asp-page="Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+                <a asp-page="/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
             </li>
             <li>
-                <a asp-page="ShoppingCart/Index">购物车</a>
+                <a asp-page="/ShoppingCart/Index">购物车</a>
             </li>
             <li>
                 <button type="submit" class="btn btn-link navbar-btn navbar-link">注销</button>
@@ -18,8 +18,8 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li><a asp-page="Account/Register">注册</a></li>
-        <li><a asp-page="Account/Login">登录</a></li>
-        <li><a asp-page="ShoppingCart/Index">购物车</a></li>
+        <li><a asp-page="/Account/Register">注册</a></li>
+        <li><a asp-page="/Account/Login">登录</a></li>
+        <li><a asp-page="/ShoppingCart/Index">购物车</a></li>
     </ul>
 }

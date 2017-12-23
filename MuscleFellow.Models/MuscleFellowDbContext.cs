@@ -15,14 +15,14 @@ namespace MuscleFellow.Models
 {
     public class MuscleFellowDbContext : IdentityDbContext<IdentityUser>, IDbContext
     {
-        private readonly bool _created;
+        private static bool _created;
 
         public MuscleFellowDbContext(DbContextOptions options) :base(options)
         {
             if (!_created)
             {
                 _created = true;
-                Database.EnsureDeleted();
+                //Database.EnsureDeleted();
                 Database.EnsureCreated();
             }
         }
