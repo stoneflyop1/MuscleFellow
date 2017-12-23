@@ -18,10 +18,22 @@ namespace MuscleFellow.Web.Pages.Account
             _signInManager = signInManager;
         }
 
-        public async Task OnGetAsync()
+        public async Task<IActionResult> OnGetAsync()
         {
-            await _signInManager.SignOutAsync();
-            RedirectToPage("/Index");
+            if (User.Identity.IsAuthenticated)
+            {
+                await _signInManager.SignOutAsync();
+            }
+            return RedirectToPage("/Index");
+        }
+
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                await _signInManager.SignOutAsync();
+            }
+            return RedirectToPage("/Index");
         }
     }
 }
