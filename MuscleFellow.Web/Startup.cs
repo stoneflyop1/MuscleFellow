@@ -10,7 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MuscleFellow.Models;
 using MuscleFellow.Models.Domain;
-using MuscleFellow.Web.Services;
 using Autofac;
 using Microsoft.Extensions.Logging;
 
@@ -72,6 +71,21 @@ namespace MuscleFellow.Web
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
+
+            //https://github.com/aspnet/EntityFrameworkCore/issues/564
+            // Loading sample data.
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var dbContext = serviceScope.ServiceProvider.GetService<MuscleFellowDbContext>();
+                bool hasCreated = dbContext.Database.EnsureCreated();
+                if (hasCreated)
+                {
+                    var dbInitializer = new MuscleFellowSampleDataInitializer(dbContext);
+                    dbInitializer.LoadBasicInformationAsync().Wait();
+                    dbInitializer.LoadSampleDataAsync().Wait();
+                }
+
+            }
         }
     }
 }

@@ -13,18 +13,13 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace MuscleFellow.Models
 {
-    public class MuscleFellowDbContext : IdentityDbContext<IdentityUser>, IDbContext
+    public class MuscleFellowDbContext : IdentityDbContext<ApplicationUser>, IDbContext
     {
-        private static bool _created;
 
         public MuscleFellowDbContext(DbContextOptions options) :base(options)
         {
-            if (!_created)
-            {
-                _created = true;
-                //Database.EnsureDeleted();
-                Database.EnsureCreated();
-            }
+            //Database.EnsureDeleted();
+            //Database.EnsureCreated();
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -38,9 +33,22 @@ namespace MuscleFellow.Models
             builder.Entity<CartItem>().HasKey(c=>c.CartID);
             builder.Entity<ApplicationUser>().HasKey(u=>u.Id);
             builder.Entity<ProductImage>().HasKey(p => p.ImageID);
+            builder.Entity<Province>().HasKey(c=>c.ID);
+            builder.Entity<City>().HasKey(c=>c.ID);
 
             base.OnModelCreating(builder);
         }
+
+        //public DbSet<Brand> Brands { get; set; }
+        //public DbSet<Category> Categories { get; set; }
+        //public DbSet<Order> Orders { get; set; }
+        //public DbSet<OrderDetail> OrderDetails { get; set; }
+        //public DbSet<Product> Products { get; set; }
+        //public DbSet<CartItem> CartItems { get; set; }
+        //public DbSet<ShipAddress> ShipAddress { get; set; }
+        //public DbSet<ProductImage> ProductImages { get; set; }
+        //public DbSet<Province> Provinces { get; set; }
+        //public DbSet<City> Cities { get; set; }
 
         public IQueryable<TEntity> Table<TEntity>() where TEntity : class
         {
@@ -54,12 +62,14 @@ namespace MuscleFellow.Models
 
         TEntity IDbContext.Attach<TEntity>(TEntity entity)
         {
-            throw new NotImplementedException();
+            base.Attach(entity);
+            return entity;
         }
 
         TEntity IDbContext.Add<TEntity>(TEntity entity)
         {
-            throw new NotImplementedException();
+            base.Set<TEntity>().Add(entity);
+            return entity;
         }
 
         public IEnumerable<TEntity> AddRange<TEntity>(IEnumerable<TEntity> entities) where TEntity : class
@@ -71,7 +81,8 @@ namespace MuscleFellow.Models
 
         TEntity IDbContext.Remove<TEntity>(TEntity entity)
         {
-            throw new NotImplementedException();
+            base.Set<TEntity>().Remove(entity);
+            return entity;
         }
 
         public IEnumerable<TEntity> RemoveRange<TEntity>(IEnumerable<TEntity> entities) where TEntity : class

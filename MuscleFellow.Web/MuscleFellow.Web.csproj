@@ -15,9 +15,4 @@
   <ItemGroup>
     <ProjectReference Include="..\MuscleFellow.Models\MuscleFellow.Models.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Pages\Account\LogOff.cshtml.cs">
-      <DependentUpon>LogOff.cshtml</DependentUpon>
-    </Compile>
-  </ItemGroup>
 </Project>

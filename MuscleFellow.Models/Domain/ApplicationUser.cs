@@ -3,7 +3,7 @@ using System;
 
 namespace MuscleFellow.Models.Domain
 {
-    public class ApplicationUser : IdentityUser<string>
+    public class ApplicationUser : IdentityUser
     {
         public ApplicationUser()
         {
