@@ -72,20 +72,21 @@ namespace MuscleFellow.Web
                     template: "{controller}/{action=Index}/{id?}");
             });
 
-            //https://github.com/aspnet/EntityFrameworkCore/issues/564
-            // Loading sample data.
-            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
-            {
-                var dbContext = serviceScope.ServiceProvider.GetService<MuscleFellowDbContext>();
-                bool hasCreated = dbContext.Database.EnsureCreated();
-                if (hasCreated)
-                {
-                    var dbInitializer = new MuscleFellowSampleDataInitializer(dbContext);
-                    dbInitializer.LoadBasicInformationAsync().Wait();
-                    dbInitializer.LoadSampleDataAsync().Wait();
-                }
+            // https://docs.microsoft.com/en-us/ef/core/get-started/aspnetcore/new-db
+             //https://github.com/aspnet/EntityFrameworkCore/issues/564
+             // Loading sample data.
+             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+             {
+                 var dbContext = serviceScope.ServiceProvider.GetService<MuscleFellowDbContext>();
+                 bool hasCreated = dbContext.Database.EnsureCreated();
+                 if (hasCreated)
+                 {
+                     var dbInitializer = new MuscleFellowSampleDataInitializer(dbContext);
+                     dbInitializer.LoadBasicInformationAsync().Wait();
+                     dbInitializer.LoadSampleDataAsync().Wait();
+                 }
 
-            }
+             }
         }
     }
 }
