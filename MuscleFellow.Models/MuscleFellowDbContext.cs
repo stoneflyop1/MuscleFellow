@@ -74,9 +74,8 @@ namespace MuscleFellow.Models
 
         public IEnumerable<TEntity> AddRange<TEntity>(IEnumerable<TEntity> entities) where TEntity : class
         {
-            var list = entities.ToArray();
-            base.AddRange(list);
-            return list;
+            base.Set<TEntity>().AddRange(entities);
+            return entities;
         }
 
         TEntity IDbContext.Remove<TEntity>(TEntity entity)
@@ -87,12 +86,13 @@ namespace MuscleFellow.Models
 
         public IEnumerable<TEntity> RemoveRange<TEntity>(IEnumerable<TEntity> entities) where TEntity : class
         {
-            throw new NotImplementedException();
+            base.Set<TEntity>().RemoveRange(entities);
+            return entities;
         }
 
         public Task<int> SaveChangesAsync()
         {
-            return SaveChangesAsync();
+            return base.SaveChangesAsync();
         }
 
         public EntityEntry<TEntity> Get<TEntity>(TEntity t) where TEntity : class
@@ -144,7 +144,7 @@ namespace MuscleFellow.Models
                 }
             }
 
-            var result = Set<TEntity>().FromSql(commandText, parameters).ToList();
+            var result = base.Set<TEntity>().FromSql(commandText, parameters).ToList();
 
             //bool acd = this.Configuration.AutoDetectChangesEnabled;
             //try
@@ -187,7 +187,7 @@ namespace MuscleFellow.Models
             var returnStr = 0;
             try
             {
-                var result = this.Database.ExecuteSqlCommand(commandText, parameters);
+                var result = base.Database.ExecuteSqlCommand(commandText, parameters);
                 returnStr = Convert.ToInt32(((DbParameter)parameters[parameters.Length - 1]).Value);
             }
             catch (Exception)
