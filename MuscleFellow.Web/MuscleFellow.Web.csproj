@@ -15,15 +15,4 @@
   <ItemGroup>
     <ProjectReference Include="..\MuscleFellow.Models\MuscleFellow.Models.csproj" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\Products\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Update="Pages\Products\Index.cshtml.cs">
-      <DependentUpon>Index.cshtml</DependentUpon>
-    </Compile>
-    <Compile Update="Pages\Products\Details.cshtml.cs">
-      <DependentUpon>Details.cshtml</DependentUpon>
-    </Compile>
-  </ItemGroup>
 </Project>
