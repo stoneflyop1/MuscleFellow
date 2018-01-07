@@ -31,6 +31,9 @@ var AjaxShoppingCart = {
         $.ajax({
             cache: false,
             url: addUrl,
+            data: {
+                "__RequestVerificationToken": $('input:hidden[name="__RequestVerificationToken"]').val()
+            },
             type: 'post',
             success: this.ajax_Succeeded,
             complete: this.SetWaitingLoading(false),

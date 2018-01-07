@@ -4,6 +4,10 @@
 
 ## 使用的技术和框架
 
-- asp.net core 2.0 razor pages (Microsoft.AspNetCore.All)，[MVC与Razor Pages的对比](https://stackify.com/asp-net-razor-pages-vs-mvc/)
+- asp.net core 2.0 razor pages (Microsoft.AspNetCore.All)，[MVC与Razor Pages的对比](https://stackify.com/asp-net-razor-pages-vs-mvc/)，以及[CSRF/XSRF处理](http://www.talkingdotnet.com/handle-ajax-requests-in-asp-net-core-razor-pages/)
 - 依赖注入使用autofac (Autofac, Autofac.Extensions.DependencyInjection)适配.net core的依赖注入
 - 数据库使用sqlite(Microsoft.EntityFrameworkCore.Sqlite)，ORM使用泛型的Repository模式
+
+## 问题
+
+1. 虽然Razor Pages本身已经自动做了[跨站攻击防御](https://docs.microsoft.com/en-us/aspnet/core/mvc/razor-pages/index?tabs=visual-studio#xsrf)，使用Ajax请求时，还是需要添加`__RequestVerificationToken`。

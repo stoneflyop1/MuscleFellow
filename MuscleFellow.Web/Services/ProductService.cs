@@ -19,6 +19,8 @@ namespace MuscleFellow.Web.Services
         Task<List<ProductImage>> GetProductImagesAsync(Guid productID);
 
         Task<Product> GetAsync(Guid id);
+
+        Task<Guid> AddAsync(Product product);
     }
 
     public class ProductService : IProductService
@@ -72,6 +74,13 @@ namespace MuscleFellow.Web.Services
         public Task<Product> GetAsync(Guid id)
         {
             return _productRepo.Table.Where(p => p.ProductID == id).SingleOrDefaultAsync();
+        }
+
+        public async Task<Guid> AddAsync(Product product)
+        {
+            if (null == product) return Guid.Empty;
+            await _productRepo.InsertAsync(product);
+            return product.ProductID;
         }
     }
 }

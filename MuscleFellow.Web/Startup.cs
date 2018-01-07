@@ -36,7 +36,9 @@ namespace MuscleFellow.Web
             services.AddMvc().AddRazorPagesOptions(options =>
             {
                 options.Conventions.AddPageRoute("/Products/Details", "Product/{id?}");
+                options.Conventions.AddPageRoute("/Index", "Home");
             });
+            //services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
         }
 
 

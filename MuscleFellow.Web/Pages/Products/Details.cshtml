@@ -5,6 +5,7 @@
     ViewData["Title"] = "产品详情";
 }
 <div class="container">
+    @Html.AntiForgeryToken()
     <h2>@Model.Product.ProductName</h2>
     @section Scripts {
         @{
@@ -38,7 +39,7 @@
                     <br />
                     <div class="row">
                         <a id="add-to-cart-button" class="btn btn-default" data-productid="@Model.Product.ProductID" 
-                           onclick="AjaxShoppingCart.AddProduct2Cart_Details('/ShoppingCart/AddToShoppingCart?ProductID=@Model.Product.ProductID&Amount=' + GetAmount());">添加到购物车</a>
+                           onclick="AjaxShoppingCart.AddProduct2Cart_Details('/ShoppingCart/?ProductID=@Model.Product.ProductID&Amount=' + GetAmount());">添加到购物车</a>
                         <a id="add-to-cart-button" class="btn btn-danger" data-productid="@Model.Product.ProductID"
                            onclick="AjaxShoppingCart.AddProdcut2Order('/Orders/Confirm?ProductID=@Model.Product.ProductID&Amount=' + GetAmount());">直接购买</a>
                     </div>
