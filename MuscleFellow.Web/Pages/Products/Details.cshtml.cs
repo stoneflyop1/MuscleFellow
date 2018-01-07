@@ -27,7 +27,7 @@ namespace MuscleFellow.Web.Pages.Products
             if (id == null) return NotFound();
             var product = await _productService.GetAsync((Guid)id);
             if (product == null) return NotFound();
-
+            if (product.Images == null) product.Images = new List<ProductImage>();
             Product = product;
             return Page();
         }

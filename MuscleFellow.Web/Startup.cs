@@ -32,7 +32,11 @@ namespace MuscleFellow.Web
             services.AddIdentity<ApplicationUser, IdentityRole>().
                 AddEntityFrameworkStores<MuscleFellowDbContext>().AddDefaultTokenProviders();
             services.AddSession(options=>options.IdleTimeout = TimeSpan.FromMinutes(20));
-            services.AddMvc();
+            // https://docs.microsoft.com/en-us/aspnet/core/mvc/razor-pages/razor-pages-convention-features#configure-a-page-route
+            services.AddMvc().AddRazorPagesOptions(options =>
+            {
+                options.Conventions.AddPageRoute("/Products/Details", "Product/{id?}");
+            });
         }
 
 
@@ -71,6 +75,7 @@ namespace MuscleFellow.Web
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
+            
 
             // https://docs.microsoft.com/en-us/ef/core/get-started/aspnetcore/new-db
             // Loading sample data.
