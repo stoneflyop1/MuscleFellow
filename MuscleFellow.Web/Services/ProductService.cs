@@ -10,18 +10,31 @@ namespace MuscleFellow.Web.Services
 {
     public interface IProductService
     {
+        Task<List<Product>> GetAllAsync();
+
         Task<List<Product>> GetPopularProductsAsync(int count);
 
         Task<IEnumerable<Product>> GetProductsAsync(string keyword, int page, int pageSize);
+
+        Task<List<ProductImage>> GetProductImagesAsync(Guid productID);
+
+        Task<Product> GetAsync(Guid id);
     }
 
     public class ProductService : IProductService
     {
         private readonly IRepository<Product> _productRepo;
+        private readonly IRepository<ProductImage> _imgRepo;
 
-        public ProductService(IRepository<Product> productRepo)
+        public ProductService(IRepository<Product> productRepo, IRepository<ProductImage> imgRepo)
         {
             _productRepo = productRepo;
+            _imgRepo = imgRepo;
+        }
+
+        public Task<List<Product>> GetAllAsync()
+        {
+            return _productRepo.ToListAsync();
         }
 
         public async Task<List<Product>> GetPopularProductsAsync(int count)
@@ -31,6 +44,16 @@ namespace MuscleFellow.Web.Services
                     .ToListAsync();
 
             return results;
+        }
+
+        public async Task<List<ProductImage>> GetProductImagesAsync(Guid productID)
+        {
+            var results = await _imgRepo.Table.Where
+                (i => i.ProductID == productID)
+                .Select(i => new { ProductImage = i, })
+                .ToListAsync();
+
+            return results.Select(i => i.ProductImage).ToList();
         }
 
         public async Task<IEnumerable<Product>> GetProductsAsync(string keyword, int page, int pageSize)
@@ -44,6 +67,11 @@ namespace MuscleFellow.Web.Services
                     .ToListAsync();
 
             return results.Select(p => p.Product);
+        }
+
+        public Task<Product> GetAsync(Guid id)
+        {
+            return _productRepo.Table.Where(p => p.ProductID == id).SingleOrDefaultAsync();
         }
     }
 }
