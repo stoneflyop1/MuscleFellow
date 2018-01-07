@@ -14,7 +14,11 @@ namespace MuscleFellow.Web.Services
     {
         Task<List<Brand>> GetAllAsync();
 
+        Brand Get(int brandID);
+
         Task<Brand> GetAsync(int brandID);
+
+        IEnumerable<Product> GetProducts(int brandID, string filter, int pageSize, int pageCount);
 
         Task<IEnumerable<Product>> GetProductsAsync(int brandID, string filter, int pageSize, int pageCount);
     }
@@ -35,9 +39,27 @@ namespace MuscleFellow.Web.Services
             return _brandRepo.ToListAsync();
         }
 
+        public Brand Get(int brandID)
+        {
+            return _brandRepo.Table.Where(b => b.BrandID == brandID).SingleOrDefault();
+        }
+
         public async Task<Brand> GetAsync(int brandID)
         {
             return await _brandRepo.Table.Where(b => b.BrandID == brandID).SingleOrDefaultAsync();
+        }
+
+        public IEnumerable<Product> GetProducts(int brandID, string filter, int pageSize, int pageCount)
+        {
+            var results = _productRepo.Table.Where
+                (p => p.BrandID == brandID && (String.IsNullOrEmpty(filter) ||
+                p.ProductName.Contains(filter) || p.Description.Contains(filter)))
+                .Select(p => new { Product = p, })
+                .Skip(pageSize * pageCount)
+                .Take(pageSize)
+                .ToList();
+
+            return results.Select(p => p.Product);
         }
 
         public async Task<IEnumerable<Product>> GetProductsAsync(int brandID, string filter, int pageSize, int pageCount)

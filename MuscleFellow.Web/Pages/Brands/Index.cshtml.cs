@@ -24,8 +24,18 @@ namespace MuscleFellow.Web.Pages.Brands
             _brandService = brandService;
         }
 
-        [Route("/Brands/{id}")]
-        public async Task OnGetAsync([FromRoute]int id)
+        //public void OnGet(int id)
+        //{
+        //    if (!HttpContext.Session.Keys.Contains("UserSession"))
+        //    {
+        //        HttpContext.Session.Set("UserSession",
+        //          System.Text.Encoding.UTF8.GetBytes("SessionCreation"));
+        //    }
+        //    Brand = _brandService.Get(id);
+        //    Products = _brandService.GetProducts(id, "", 50, 0);
+        //}
+
+        public async Task OnGetAsync(int id)
         {
             if (!HttpContext.Session.Keys.Contains("UserSession"))
             {
@@ -33,7 +43,7 @@ namespace MuscleFellow.Web.Pages.Brands
                   System.Text.Encoding.UTF8.GetBytes("SessionCreation"));
             }
             Brand = await _brandService.GetAsync(id);
-            Products = (await _brandService.GetProductsAsync(id, "", 50, 0));
+            Products = await _brandService.GetProductsAsync(id, "", 50, 0);
         }
     }
 }
