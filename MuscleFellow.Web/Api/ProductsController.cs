@@ -25,10 +25,11 @@ namespace MuscleFellow.Web.Api
         {
             if (0 == pagesize)
             {
-                return BadRequest();
+                pagesize = 10;
+                //return BadRequest();
             }
 
-            IEnumerable<Product> products = await _productService.GetProductsAsync(keyword, pagesize, page);
+            IEnumerable<Product> products = await _productService.GetProductsAsync(keyword, page, pagesize);
             //foreach (Product p in products)
             //    p.ThumbnailImage = _settings.HostName + p.ThumbnailImage;
             JsonResult result = new JsonResult(products);

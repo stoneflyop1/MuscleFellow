@@ -12,6 +12,9 @@ using MuscleFellow.Models;
 using MuscleFellow.Models.Domain;
 using Autofac;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace MuscleFellow.Web
 {
@@ -37,6 +40,34 @@ namespace MuscleFellow.Web
             {
                 options.Conventions.AddPageRoute("/Products/Details", "Product/{id?}");
                 options.Conventions.AddPageRoute("/Index", "Home");
+            });
+
+            //https://github.com/aspnet/Security/issues/1310
+            // Add JWT¡¡Protection
+            var secretKey = "mysupersecret_secretkey!123";
+            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
+            var tokenValidationParameters = new TokenValidationParameters
+            {
+                // The signing key must match! 
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = signingKey,
+                // Validate the JWT Issuer (iss) claim 
+                ValidateIssuer = true,
+                ValidIssuer = "MuscleFellow",
+                // Validate the JWT Audience (aud) claim 
+                ValidateAudience = true,
+                ValidAudience = "MuscleFellowAudience",
+                // Validate the token expiry 
+                ValidateLifetime = true,
+                // If you want to allow a certain amount of clock drift, set that here: 
+                ClockSkew = TimeSpan.Zero
+            };
+            services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = tokenValidationParameters;
             });
             //services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
         }
