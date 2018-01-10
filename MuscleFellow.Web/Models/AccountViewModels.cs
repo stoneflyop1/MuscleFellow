@@ -5,6 +5,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MuscleFellow.Web.Models
 {
+    public class LoginAPIModel
+    {
+        public string UserID { get; set; }
+        public string Password { get; set; }
+    }
+
     public class LoginViewModel
     {
         [Required]

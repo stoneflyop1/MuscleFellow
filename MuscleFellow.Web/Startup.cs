@@ -15,11 +15,14 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace MuscleFellow.Web
 {
     public class Startup
     {
+        public static readonly string SecretKey = "mysupersecret_secretkey!123";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -35,17 +38,11 @@ namespace MuscleFellow.Web
             services.AddIdentity<ApplicationUser, IdentityRole>().
                 AddEntityFrameworkStores<MuscleFellowDbContext>().AddDefaultTokenProviders();
             services.AddSession(options=>options.IdleTimeout = TimeSpan.FromMinutes(20));
-            // https://docs.microsoft.com/en-us/aspnet/core/mvc/razor-pages/razor-pages-convention-features#configure-a-page-route
-            services.AddMvc().AddRazorPagesOptions(options =>
-            {
-                options.Conventions.AddPageRoute("/Products/Details", "Product/{id?}");
-                options.Conventions.AddPageRoute("/Index", "Home");
-            });
 
+            // https://stackoverflow.com/questions/37708266/bearer-token-authentication-in-asp-net-core
             //https://github.com/aspnet/Security/issues/1310
             // Add JWT¡¡Protection
-            var secretKey = "mysupersecret_secretkey!123";
-            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(secretKey));
+            var signingKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(SecretKey));
             var tokenValidationParameters = new TokenValidationParameters
             {
                 // The signing key must match! 
@@ -62,13 +59,29 @@ namespace MuscleFellow.Web
                 // If you want to allow a certain amount of clock drift, set that here: 
                 ClockSkew = TimeSpan.Zero
             };
+            //https://forums.asp.net/t/2105147.aspx?Authorization+using+cookies+for+views+and+bearer+tokens+for+json+results
             services.AddAuthentication(options =>
             {
+                //options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                //options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                //options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+
             }).AddJwtBearer(options =>
             {
+
                 options.TokenValidationParameters = tokenValidationParameters;
             });
+
+
+            // https://docs.microsoft.com/en-us/aspnet/core/mvc/razor-pages/razor-pages-convention-features#configure-a-page-route
+            services.AddMvc().AddRazorPagesOptions(options =>
+            {
+                options.Conventions.AddPageRoute("/Products/Details", "Product/{id?}");
+                options.Conventions.AddPageRoute("/Index", "Home");
+            });
+
+
             //services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
         }
 
