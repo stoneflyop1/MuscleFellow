@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:local="clr-namespace:MuscleFellow" 
+    x:Class="MuscleFellow.MuscleFellowPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout.Children>
+                <Label Text="Hello from Xamarin XAML!"
+                    IsVisible="true"
+                    Opacity="0.75"
+                    HorizontalTextAlignment="Center"
+                    VerticalOptions="CenterAndExpand"
+                    TextColor="Blue"
+                    BackgroundColor="#FF8080"
+                    FontSize="Large"
+                    FontAttributes="Bold,Italic"
+                    />
+            </StackLayout.Children>
+        </StackLayout>
+    </ContentPage.Content>
+	
+</ContentPage>
