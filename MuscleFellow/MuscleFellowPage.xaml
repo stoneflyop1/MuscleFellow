@@ -6,16 +6,29 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout.Children>
-                <Label Text="Hello from Xamarin XAML!"
-                    IsVisible="true"
-                    Opacity="0.75"
-                    HorizontalTextAlignment="Center"
-                    VerticalOptions="CenterAndExpand"
-                    TextColor="Blue"
-                    BackgroundColor="#FF8080"
-                    FontSize="Large"
-                    FontAttributes="Bold,Italic"
-                    />
+                
+                <ListView ItemsSource="{Binding Items}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ImageCell 
+                                Text="{Binding Name}" 
+                                Detail="{Binding Description}"
+                                ImageSource="{Binding ThumbnailImage}"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.Header>
+                        <Label Text="产品列表"
+                        IsVisible="true"
+                        Opacity="0.75"
+                        HorizontalTextAlignment="Center"
+                        VerticalOptions="CenterAndExpand"
+                        TextColor="Blue"
+                        BackgroundColor="#FF8080"
+                        FontSize="Large"
+                        FontAttributes="Bold,Italic"/>
+                    </ListView.Header>
+                </ListView>
+                <ActivityIndicator IsRunning="{Binding IsBusy}" />
             </StackLayout.Children>
         </StackLayout>
     </ContentPage.Content>

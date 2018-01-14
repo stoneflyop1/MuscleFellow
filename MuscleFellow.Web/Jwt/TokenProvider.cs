@@ -5,14 +5,11 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using MuscleFellow.ApiModels;
 
 namespace MuscleFellow.Web.Jwt
 {
-    public class TokenEntity
-    {
-        public string access_token { get; set; }
-        public int expires_in { get; set; }
-    }
+    
     public class TokenProvider
     {
         private readonly TokenProviderOptions _options;

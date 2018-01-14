@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuscleFellow.iOS", "iOS\Mus
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuscleFellow.Droid", "Droid\MuscleFellow.Droid.csproj", "{75166C03-EEF4-4C40-A96A-F4CC2BC54F5D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MuscleFellow.ApiModels", "MuscleFellow.ApiModels\MuscleFellow.ApiModels.csproj", "{C1280423-1CEF-4C18-BA99-33E0FC63DF8D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,6 +98,18 @@ Global
 		{75166C03-EEF4-4C40-A96A-F4CC2BC54F5D}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{75166C03-EEF4-4C40-A96A-F4CC2BC54F5D}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{75166C03-EEF4-4C40-A96A-F4CC2BC54F5D}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{C1280423-1CEF-4C18-BA99-33E0FC63DF8D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1280423-1CEF-4C18-BA99-33E0FC63DF8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1280423-1CEF-4C18-BA99-33E0FC63DF8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1280423-1CEF-4C18-BA99-33E0FC63DF8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1280423-1CEF-4C18-BA99-33E0FC63DF8D}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{C1280423-1CEF-4C18-BA99-33E0FC63DF8D}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{C1280423-1CEF-4C18-BA99-33E0FC63DF8D}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{C1280423-1CEF-4C18-BA99-33E0FC63DF8D}.Release|iPhone.Build.0 = Release|Any CPU
+		{C1280423-1CEF-4C18-BA99-33E0FC63DF8D}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{C1280423-1CEF-4C18-BA99-33E0FC63DF8D}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{C1280423-1CEF-4C18-BA99-33E0FC63DF8D}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{C1280423-1CEF-4C18-BA99-33E0FC63DF8D}.Debug|iPhone.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

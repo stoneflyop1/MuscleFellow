@@ -16,5 +16,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MuscleFellow.Models\MuscleFellow.Models.csproj" />
+    <ProjectReference Include="..\MuscleFellow.ApiModels\MuscleFellow.ApiModels.csproj" />
   </ItemGroup>
 </Project>

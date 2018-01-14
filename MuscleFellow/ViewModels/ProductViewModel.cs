@@ -3,12 +3,19 @@ using System.ComponentModel;
 
 namespace MuscleFellow.ViewModels
 {
-    public class ProjectViewModel : INotifyPropertyChanged
+    public class ProductViewModel : BaseViewModel
     {
-        public ProjectViewModel()
+        public ProductViewModel()
         {
+
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public Guid Id { get; set; }
+
+        public string Name { get; set; }
+
+        public string Description { get; set; }
+
+        public string ThumbnailImage { get; set; }
     }
 }

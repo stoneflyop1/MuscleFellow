@@ -22,7 +22,7 @@ namespace MuscleFellow.Web.Api
         {
             _productService = productService;
         }
-
+        [AllowAnonymous]
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] string keyword, [FromQuery] int page, [FromQuery] int pagesize)
         {
