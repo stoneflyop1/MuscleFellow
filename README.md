@@ -7,6 +7,7 @@
 - asp.net core 2.0 razor pages (Microsoft.AspNetCore.All)，[MVC与Razor Pages的对比](https://stackify.com/asp-net-razor-pages-vs-mvc/)，以及[CSRF/XSRF处理](http://www.talkingdotnet.com/handle-ajax-requests-in-asp-net-core-razor-pages/)
 - 依赖注入使用autofac (Autofac, Autofac.Extensions.DependencyInjection)适配.net core的依赖注入
 - 数据库使用sqlite(Microsoft.EntityFrameworkCore.Sqlite)，ORM使用泛型的Repository模式
+- 移动App使用[Xamarin Forms](https://github.com/xamarin/Xamarin.Forms)，其中Android选择了支持Android7.0以上版本，低版本需要重新安装Xamarin.Android的Nuget包
 
 ## 问题
 
