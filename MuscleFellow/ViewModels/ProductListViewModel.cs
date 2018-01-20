@@ -20,7 +20,13 @@ namespace MuscleFellow.ViewModels
             {
                 _isBusy = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(IsLoaded));
             }
+        }
+
+        public bool IsLoaded
+        {
+            get { return !IsBusy; }
         }
 
         private ObservableCollection<ProductViewModel> _items;

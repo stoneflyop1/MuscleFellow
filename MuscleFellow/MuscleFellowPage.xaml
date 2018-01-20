@@ -4,12 +4,23 @@
     xmlns:local="clr-namespace:MuscleFellow" 
     x:Class="MuscleFellow.MuscleFellowPage">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Margin="0,10,0,0">
             <StackLayout.Children>
-                <ListView ItemsSource="{Binding Items}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="70*" />
+                        <ColumnDefinition Width="15*" />
+                        <ColumnDefinition Width="15*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="1" Text="登录"></Button>
+                    <Button Grid.Column="2" Text="注册"></Button>
+                </Grid>
+                <ListView ItemsSource="{Binding Items}" 
+                    Margin="0,10,0,0"
+                    IsVisible="{Binding IsLoaded}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ImageCell 
+                            <ImageCell
                                 Text="{Binding Name}" 
                                 Detail="{Binding Description}"
                                 ImageSource="{Binding ThumbnailImage}"/>
