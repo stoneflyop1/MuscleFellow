@@ -6,7 +6,6 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout.Children>
-                
                 <ListView ItemsSource="{Binding Items}">
                     <ListView.ItemTemplate>
                         <DataTemplate>

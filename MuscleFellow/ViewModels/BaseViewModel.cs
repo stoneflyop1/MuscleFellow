@@ -4,9 +4,9 @@ using System.Runtime.CompilerServices;
 
 namespace MuscleFellow.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public abstract class BaseViewModel : INotifyPropertyChanged
     {
-        public BaseViewModel()
+        protected BaseViewModel()
         {
         }
 
