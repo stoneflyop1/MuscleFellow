@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms" 
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:local="clr-namespace:MuscleFellow.Views;assembly=MuscleFellow"
     x:Class="MuscleFellow.MainPage">
-	<TabbedPage.Content>
-	</TabbedPage.Content>
+	    <NavigationPage Title="商品">
+            <x:Arguments>
+                <local:ProductsPage />
+            </x:Arguments>
+        </NavigationPage>
+        <NavigationPage Title="我的">
+            <x:Arguments>
+                <local:MyPage />
+            </x:Arguments>
+        </NavigationPage>
 </TabbedPage>

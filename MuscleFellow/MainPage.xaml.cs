@@ -10,8 +10,6 @@ namespace MuscleFellow
         public MainPage()
         {
             InitializeComponent();
-            Children.Add(new Views.ProductsPage());
-            Children.Add(new Views.MyPage());
         }
     }
 }
