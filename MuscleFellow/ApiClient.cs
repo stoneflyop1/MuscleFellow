@@ -15,7 +15,8 @@ namespace MuscleFellow
 
         private ApiClient()
         {
-            _host = "http://192.168.56.101:5001";
+            // https://stackoverflow.com/questions/5528850/how-to-connect-localhost-in-android-emulator
+            _host = "http://localhost:5001"; //安卓模拟器需要使用10.0.2.2访问localhost
             _client = new HttpClient() { BaseAddress = new Uri(_host) };
         }
 
