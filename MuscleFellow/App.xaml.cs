@@ -8,7 +8,7 @@ namespace MuscleFellow
         {
             InitializeComponent();
 
-            MainPage = new MuscleFellowPage();
+            MainPage = new MainPage();
         }
 
         protected override void OnStart()

@@ -2,11 +2,11 @@
 using MuscleFellow.ViewModels;
 using Xamarin.Forms;
 
-namespace MuscleFellow
+namespace MuscleFellow.Views
 {
-    public partial class MuscleFellowPage : ContentPage
+    public partial class ProductsPage : ContentPage
     {
-        public MuscleFellowPage()
+        public ProductsPage()
         {
             InitializeComponent();
             var vm = new ProductListViewModel();
