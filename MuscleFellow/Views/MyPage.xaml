@@ -9,8 +9,8 @@
             <Label Text="用户名" />
             <Entry Text="{Binding UserName}" />
             <Label Text="密码" />
-            <Entry Text="{Binding Password}" />
-            <Button Text="登录" />
+            <Entry Text="{Binding Password}" IsPassword="true" />
+            <Button Text="登录" Command="{Binding Login}" />
         </StackLayout>
 	</ContentPage.Content>
 </ContentPage>

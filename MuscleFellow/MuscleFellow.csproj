@@ -58,6 +58,7 @@
       <DependentUpon>MyPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\MyViewModel.cs" />
+    <Compile Include="Utils\RelayCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.Forms.Core">
