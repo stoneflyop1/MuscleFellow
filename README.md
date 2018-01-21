@@ -11,6 +11,8 @@
 
 ## 如何使用
 
+[使用 `dotnet publish`发布dotnetcore程序](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-publish?tabs=netcore2x)
+
 ```sh
 cd MuscleFellow.Web
 dotnet publish -c Release # it'll build and publish to bin/Release/netcoreapp2.0/publish
