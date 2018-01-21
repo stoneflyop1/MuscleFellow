@@ -10,6 +10,11 @@ namespace MuscleFellow
 
             MainPage = new MainPage();
         }
+        /// <summary>
+        /// Test Host Address
+        /// </summary>
+        /// <value>The webapi host.</value>
+        public static string Host { get; set; }
 
         protected override void OnStart()
         {

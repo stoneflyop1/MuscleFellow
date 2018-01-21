@@ -21,7 +21,8 @@ namespace MuscleFellow.Droid
             base.OnCreate(bundle);
 
             global::Xamarin.Forms.Forms.Init(this, bundle);
-
+            // https://stackoverflow.com/questions/5528850/how-to-connect-localhost-in-android-emulator
+            App.Host = "http://10.0.2.2:5001"; //安卓模拟器需要使用10.0.2.2访问localhost
             LoadApplication(new App());
         }
     }
