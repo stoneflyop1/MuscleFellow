@@ -9,6 +9,15 @@
 - 数据库使用sqlite(Microsoft.EntityFrameworkCore.Sqlite)，ORM使用泛型的Repository模式
 - 移动App使用[Xamarin Forms](https://github.com/xamarin/Xamarin.Forms)，其中Android选择了支持Android7.0以上版本，低版本需要重新安装Xamarin.Android的Nuget包
 
+## 如何使用
+
+```sh
+cd MuscleFellow.Web
+dotnet publish -c Release # it'll build and publish to bin/Release/netcoreapp2.0/publish
+cd bin/Release/netcoreapp2.0/publish
+dotnet MuscleFellow.Web.dll # start the website
+```
+
 ## 问题
 
 1. 虽然Razor Pages本身已经自动做了[跨站攻击防御](https://docs.microsoft.com/en-us/aspnet/core/mvc/razor-pages/index?tabs=visual-studio#xsrf)，使用Ajax请求时，还是需要添加`__RequestVerificationToken`。
