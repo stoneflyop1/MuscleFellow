@@ -16,6 +16,7 @@ using MuscleFellow.Web.Jwt;
 
 namespace MuscleFellow.Web.Api
 {
+	#pragma warning disable 1591
     [Route("api/[controller]/[action]")]
     public class AccountController : Controller
     {
@@ -31,7 +32,7 @@ namespace MuscleFellow.Web.Api
             _signInManager = signInManager;
             _logger = loggerFactory.CreateLogger<AccountController>();
         }
-
+		#pragma warning restore 1591
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]

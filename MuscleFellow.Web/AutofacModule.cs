@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace MuscleFellow.Web
 {
+	#pragma warning disable 1591
     public class AutofacModule : Module
     {
         protected override void Load(ContainerBuilder builder)

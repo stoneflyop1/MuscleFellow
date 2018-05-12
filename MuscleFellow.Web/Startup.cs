@@ -16,9 +16,13 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.Extensions.PlatformAbstractions;
+using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace MuscleFellow.Web
 {
+	#pragma warning disable 1591
     public class Startup
     {
         public static readonly string SecretKey = "mysupersecret_secretkey!123";
@@ -81,9 +85,24 @@ namespace MuscleFellow.Web
                 options.Conventions.AddPageRoute("/Index", "Home");
             });
 
+			services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" });
+				AddXmlComments(c);
+            });
 
             //services.AddAntiforgery(o => o.HeaderName = "XSRF-TOKEN");
         }
+
+        
+		private void AddXmlComments(SwaggerGenOptions c)
+		{
+			var app = PlatformServices.Default.Application;
+            var xm1 = System.IO.Path.Combine(app.ApplicationBasePath, "MuscleFellow.Web.xml");
+			c.IncludeXmlComments(xm1);
+			var xml2 = System.IO.Path.Combine(app.ApplicationBasePath, "MuscleFellow.Models.xml");
+			c.IncludeXmlComments(xml2);
+		}
 
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -121,7 +140,12 @@ namespace MuscleFellow.Web
                     name: "default",
                     template: "{controller}/{action=Index}/{id?}");
             });
-            
+
+			app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+            });
 
             // https://docs.microsoft.com/en-us/ef/core/get-started/aspnetcore/new-db
             // Loading sample data.

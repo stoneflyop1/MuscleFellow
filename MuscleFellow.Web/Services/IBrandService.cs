@@ -23,6 +23,8 @@ namespace MuscleFellow.Web.Services
         Task<IEnumerable<Product>> GetProductsAsync(int brandID, string filter, int pageSize, int pageCount);
     }
 
+	#pragma warning disable 1591
+
     public class BrandService : IBrandService
     {
         private readonly IRepository<Brand> _brandRepo;

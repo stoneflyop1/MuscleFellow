@@ -22,21 +22,24 @@ namespace MuscleFellow.Web.Api
         {
             _productService = productService;
         }
+        /// <summary>
+        /// Get the specified products.
+        /// </summary>
+        /// <returns>The get.</returns>
+        /// <param name="keyword">Keyword.</param>
+        /// <param name="page">Page.</param>
+        /// <param name="pagesize">Pagesize.</param>
         [AllowAnonymous]
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] string keyword, [FromQuery] int page, [FromQuery] int pagesize)
+		public async Task<IEnumerable<Product>> Get([FromQuery] string keyword, [FromQuery] int page, [FromQuery] int pagesize)
         {
             if (0 == pagesize)
             {
                 pagesize = 10;
-                //return BadRequest();
             }
 
             IEnumerable<Product> products = await _productService.GetProductsAsync(keyword, page, pagesize);
-            //foreach (Product p in products)
-            //    p.ThumbnailImage = _settings.HostName + p.ThumbnailImage;
-            JsonResult result = new JsonResult(products);
-            return result;
+            return products;
         }
     }
 }

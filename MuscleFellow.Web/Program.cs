@@ -11,6 +11,7 @@ using Autofac.Extensions.DependencyInjection;
 
 namespace MuscleFellow.Web
 {
+	#pragma warning disable 1591
     public class Program
     {
         public static void Main(string[] args)
@@ -34,4 +35,5 @@ namespace MuscleFellow.Web
         }
             
     }
+	#pragma warning restore 1591
 }

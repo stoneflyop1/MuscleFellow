@@ -28,6 +28,8 @@ namespace MuscleFellow.Web.Services
         Task<CartItem> GetByID(Guid id);
     }
 
+	#pragma warning disable 1591
+
     public class CartItemService : ICartItemService
     {
         private readonly IRepository<CartItem> _cartRepo = null;

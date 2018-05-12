@@ -23,6 +23,8 @@ namespace MuscleFellow.Web.Services
         Task<Guid> AddAsync(Product product);
     }
 
+	#pragma warning disable 1591
+
     public class ProductService : IProductService
     {
         private readonly IRepository<Product> _productRepo;
