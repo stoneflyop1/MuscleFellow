@@ -38,17 +38,7 @@ namespace MuscleFellow.Models
 
             base.OnModelCreating(builder);
         }
-
-        //public DbSet<Brand> Brands { get; set; }
-        //public DbSet<Category> Categories { get; set; }
-        //public DbSet<Order> Orders { get; set; }
-        //public DbSet<OrderDetail> OrderDetails { get; set; }
-        //public DbSet<Product> Products { get; set; }
-        //public DbSet<CartItem> CartItems { get; set; }
-        //public DbSet<ShipAddress> ShipAddress { get; set; }
-        //public DbSet<ProductImage> ProductImages { get; set; }
-        //public DbSet<Province> Provinces { get; set; }
-        //public DbSet<City> Cities { get; set; }
+        
 
         public IQueryable<TEntity> Table<TEntity>() where TEntity : class
         {
@@ -184,17 +174,17 @@ namespace MuscleFellow.Models
                     commandText += " output";
                 }
             }
-            var returnStr = 0;
+            //var returnStr = 0;
             try
             {
-                var result = base.Database.ExecuteSqlCommand(commandText, parameters);
-                returnStr = Convert.ToInt32(((DbParameter)parameters[parameters.Length - 1]).Value);
+                return base.Database.ExecuteSqlCommand(commandText, parameters);
+                //returnStr = Convert.ToInt32(((DbParameter)parameters[parameters.Length - 1]).Value);
             }
             catch (Exception)
             {
 
             }
-            return returnStr;
+            return 0;
         }
 
         public IEnumerable<TElement> SqlQuery<TElement>(string sql, params object[] parameters) where TElement : class

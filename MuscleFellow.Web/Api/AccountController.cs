@@ -34,6 +34,11 @@ namespace MuscleFellow.Web.Api
         }
 		#pragma warning restore 1591
         // POST: /Account/Register
+        /// <summary>
+        /// Register the specified registerModel.
+        /// </summary>
+        /// <returns>The register.</returns>
+        /// <param name="registerModel">Register model.</param>
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] LoginAPIModel registerModel)
@@ -51,6 +56,11 @@ namespace MuscleFellow.Web.Api
             return Unauthorized();
         }
         // POST: /Account/Login
+        /// <summary>
+        /// Login the specified loginModel.
+        /// </summary>
+        /// <returns>The login.</returns>
+        /// <param name="loginModel">Login model.</param>
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginAPIModel loginModel)
@@ -88,6 +98,10 @@ namespace MuscleFellow.Web.Api
             }
         }
         // POST: /Account/LogOff
+        /// <summary>
+        /// Logs the off.
+        /// </summary>
+        /// <returns>The off.</returns>
         [HttpPost]
         [Authorize]
         public async Task<IActionResult> LogOff()

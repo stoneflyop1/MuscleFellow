@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace MuscleFellow.Web.Jwt
 {
+	#pragma warning disable 1591
     public class CustomJwtDataFormat : ISecureDataFormat<AuthenticationTicket>
     {
         private readonly string algorithm;
